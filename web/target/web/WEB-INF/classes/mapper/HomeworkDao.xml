@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.HomeworkDao">
+
+    <insert id="addHomework" parameterType="Homework">
+        insert into homework(id,title,content,create_time) value (#{id}, #{title}, #{content},#{createTime})
+    </insert>
+
+    <insert id="handHomework" parameterType="Homework">
+        insert into student_homework(id,student_id,homework_id,homework_title,homework_content,create_time,update_time) value (#{id}, #{studentId},#{homeworkId},#{homeworkTitle},#{homeworkContent},#{createTime},#{updateTime})
+    </insert>
+
+    <select id="selectAllStudentHomework" resultType="StudentHomework">
+        select * from student_homework
+    </select>
+    <select id="selectAllTeacherHomework" resultType="Homework" >
+        select * from homework
+    </select>
+
+    <select id="selectAStudentHomework" resultType="StudentHomework" parameterType="String">
+        SELECT * FROM student_homework WHERE student_id=#{id}
+    </select>
+
+    <select id="selectAHomework" resultType="StudentHomework" parameterType="String">
+        SELECT * FROM student_homework WHERE homework_id=#{id}
+    </select>
+
+
+</mapper>
